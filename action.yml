@@ -19,7 +19,7 @@ runs:
       uses: docker://alpine/curl:latest
       run: |
         # Prepare content to be used in the JSON
-        PREPARED_CONTENT=$(echo "$CONTENT" | sed 's/$/\\n/g' | tr -d '\n')
+        PREPARED_CONTENT=$(echo "$CONTENT" | sed 's/"/\\"/g' | sed 's/$/\\n/g' | tr -d '\n')
         # Temporary for debug
         echo "$PREPARED_CONTENT"
         # Make Platform API call to post workflow evidence item
