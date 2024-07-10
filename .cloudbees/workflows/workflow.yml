@@ -17,5 +17,8 @@ jobs:
       name: Test publish-evidence-item action
       uses: cloudbees-io/publish-evidence-item@v1
       with:
-        content: test evidence item content
+        content: |
+          # Test markup and property rendering
+          - Step ID: ${{ step.id }}
+          - Color test: <span style="color:green">This text should be green</span>
         format: MARKDOWN
