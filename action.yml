@@ -19,7 +19,6 @@ runs:
       name: Post workflow evidence item
       uses: docker://alpine/curl:latest
       run: |
-        echo '{"stepId": "'"$STEP_ID"'", "evidence": {"value": "'"$CONTENT"'", "format": "'"$FORMAT"'"}}'
         curl -X 'POST' "$URL/v1/workflows/artifact" -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' --data-binary '{"stepId": "'"$STEP_ID"'", "evidence": {"value": "'"$CONTENT"'", "format": "'"$FORMAT"'"}}'
       env:
         STEP_ID: $${{ step.id }}
