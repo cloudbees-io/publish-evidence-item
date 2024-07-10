@@ -20,7 +20,7 @@ runs:
       run: |
         curl -X 'POST' "$URL/v1/workflows/artifact" -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' --data-binary '{"stepId": "'"$STEP_ID"'", "evidence": {"value": "'"$CONTENT"'", "format": "'"$FORMAT"'"}}'
       env:
-        STEP_ID: $${{ step.id }}
+        STEP_ID: ${{ step.id }}
         CONTENT: ${{ inputs.content }}
         FORMAT: ${{ inputs.format }}
         JWT: ${{ cloudbees.api.token }}
