@@ -20,6 +20,8 @@ runs:
       run: |
         # Prepare content to be used in the JSON
         PREPARED_CONTENT=$(echo "$CONTENT" | sed 's/$/\\n/g' | tr -d '\n')
+        # Temporary for debug
+        echo "$PREPARED_CONTENT"
         # Make Platform API call to post workflow evidence item
         curl -X 'POST' "$URL/v1/workflows/artifact" -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' --data-binary '{"stepId": "'"$STEP_ID"'", "evidence": {"value": "'"$PREPARED_CONTENT"'", "format": "'"$FORMAT"'"}}'
       env:
