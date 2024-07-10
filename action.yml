@@ -10,7 +10,6 @@ inputs:
   format:
     description: Used to render the evidence item.
     default: MARKDOWN
-    required: true
 
 runs:
   using: composite
