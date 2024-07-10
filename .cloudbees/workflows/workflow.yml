@@ -19,6 +19,5 @@ jobs:
       with:
         content: |
           ## Test markup and property rendering
-          - Step ID: ${{ step.id }}
+          - Run ID: ${{ cloudbees.run_id }}
           - Color test: <span style="color:green">This text should be green</span>
-        format: MARKDOWN
