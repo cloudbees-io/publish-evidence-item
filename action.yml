@@ -1,7 +1,7 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: action
-name: 'Workflow evidence item post'
-description: 'Action for posting workflow evidence item from a workflow step'
+name: 'Publish evidence item'
+description: 'Use this action to capture information that serves as evidence of work done by the workflow run.'
 
 inputs:
   content:
