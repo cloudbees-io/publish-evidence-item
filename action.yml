@@ -6,9 +6,11 @@ description: 'Action for posting workflow evidence item from a workflow step'
 inputs:
   content:
     description: Information to capture as an evidence item for the workflow run. The information is captured at the step level for the workflow run.
+    required: true
   format:
     description: Used to render the evidence item.
     default: markdown
+    required: true
 
 runs:
   using: composite
