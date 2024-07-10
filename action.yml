@@ -20,8 +20,16 @@ runs:
       run: |
         # Prepare content to be used in the JSON
         PREPARED_CONTENT=$(echo "$CONTENT" | sed 's/"/\\"/g' | sed 's/$/\\n/g' | tr -d '\n')
+        
         # Make Platform API call to post workflow evidence item
-        curl -X 'POST' "$URL/v1/workflows/artifact" -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' --data-binary '{"stepId": "'"$STEP_ID"'", "evidence": {"value": "'"$PREPARED_CONTENT"'", "format": "'"$FORMAT"'"}}'
+        response=$(curl -X 'POST' "$URL/v1/workflows/artifact" -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' --data-binary '{"stepId": "'"$STEP_ID"'", "evidence": {"value": "'"$PREPARED_CONTENT"'", "format": "'"$FORMAT"'"}}')
+        
+        # Check response
+        if [ "$response" != "{}" ]
+        then
+          echo "Platform API call failed with error '$response'"
+          exit 1
+        fi
       env:
         STEP_ID: ${{ step.id }}
         CONTENT: ${{ inputs.content }}
