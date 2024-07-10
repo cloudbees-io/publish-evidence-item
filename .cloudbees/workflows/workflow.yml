@@ -1,0 +1,21 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: publish-evidence-item
+
+on:
+  push:
+    branches:
+      - '**'
+
+permissions:
+  id-token: read
+
+jobs:
+  testAction:
+    steps:
+    - id: testAction
+      name: Test publish-evidence-item action
+      uses: cloudbees-io/publish-evidence-item
+      with:
+        content: test data
+        format: markdown
