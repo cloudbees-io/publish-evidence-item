@@ -37,7 +37,10 @@ In your YAML file, add:
       - name: Publish workflow evidence item
         uses: cloudbees-io/publish-evidence-item@v1
         with:
-          content: some evidence item data
+          content: |
+            ## Test markup and property rendering
+            - Run ID: ${{ cloudbees.run_id }}
+            - Color test: <span style="color:green">This text should be green</span>
           format: MARKDOWN
 
 ----
