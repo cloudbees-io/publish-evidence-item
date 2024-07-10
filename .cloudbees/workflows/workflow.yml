@@ -18,4 +18,4 @@ jobs:
       uses: cloudbees-io/publish-evidence-item
       with:
         content: test evidence item content
-        format: markdown
+        format: MARKDOWN
