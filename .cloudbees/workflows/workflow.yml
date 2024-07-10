@@ -15,7 +15,7 @@ jobs:
     steps:
     - id: testAction
       name: Test publish-evidence-item action
-      uses: cloudbees-io/publish-evidence-item
+      uses: cloudbees-io/publish-evidence-item@v1
       with:
         content: test evidence item content
         format: MARKDOWN
