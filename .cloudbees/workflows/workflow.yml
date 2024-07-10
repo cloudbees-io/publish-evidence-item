@@ -17,5 +17,5 @@ jobs:
       name: Test publish-evidence-item action
       uses: cloudbees-io/publish-evidence-item
       with:
-        content: test data
+        content: test evidence item content
         format: markdown
