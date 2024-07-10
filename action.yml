@@ -9,7 +9,7 @@ inputs:
     required: true
   format:
     description: Used to render the evidence item.
-    default: markdown
+    default: MARKDOWN
     required: true
 
 runs:
