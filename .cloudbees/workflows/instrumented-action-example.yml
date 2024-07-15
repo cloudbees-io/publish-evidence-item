@@ -1,0 +1,14 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Call instrumented action
+on:
+  push:
+    branches:
+      - "**"
+jobs:
+  build:
+    steps:
+      - name: Call instrumented action
+        uses: ./instrumented-action-example
+        with:
+          in: Some text to pass on
