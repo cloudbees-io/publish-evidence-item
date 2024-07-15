@@ -1,0 +1,45 @@
+= CloudBees action: Instrumented action example.
+
+Illustrates how to instrument an action definition to publish evidence to the workflow run
+
+== Inputs
+
+[cols="2a,1a,1a,1a,3a",options="header"]
+.Input details
+|===
+
+| Input name
+| Data type
+| Required?
+| Default value
+| Description
+
+| `in`
+| String
+| Yes
+|
+| Input to action to pass through as evidence.
+
+|===
+
+== Usage example
+
+In your YAML file, add:
+
+[source,yaml]
+----
+      - name: Publish workflow evidence item
+        uses: cloudbees-io/publish-evidence-item/instrumented-action-example@v1
+        with:
+          in: Some input text
+----
+
+== License
+
+This code is made available under the 
+link:https://opensource.org/license/mit/[MIT license].
+
+== References
+
+* Learn more about link:https://docs.cloudbees.com/docs/cloudbees-saas-platform-actions/latest/[using actions in CloudBees workflows].
+* Learn about link:https://docs.cloudbees.com/docs/cloudbees-saas-platform/latest/[the CloudBees platform].
