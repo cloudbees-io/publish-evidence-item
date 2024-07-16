@@ -1,6 +1,6 @@
-= CloudBees action: Publish evidence item.
+= CloudBees action: Publish evidence item
 
-Use this action to capture information that serves as evidence of work done by the workflow run.
+Use this action to capture evidence data for workflow runs.   This information is collected at the step level of the workflow run.
 
 == Inputs
 
@@ -18,13 +18,13 @@ Use this action to capture information that serves as evidence of work done by t
 | String
 | Yes
 |
-| Information to capture as an evidence item for the workflow run. The information is captured at the step level for the workflow run.
+| The step level information captured as evidence for the workflow run.
 
 | `format`
 | String
 | No
 | MARKDOWN
-| Used to render the evidence item.
+| The markup language format.  Default is Markdown.
 
 |===
 
