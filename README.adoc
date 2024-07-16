@@ -2,6 +2,7 @@
 
 Use this action to capture information that serves as evidence of work done by the workflow run.
 
+
 == Inputs
 
 [cols="2a,1a,1a,1a,3a",options="header"]
