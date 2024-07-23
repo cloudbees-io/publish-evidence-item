@@ -22,12 +22,12 @@ runs:
         PREPARED_CONTENT=$(echo "$CONTENT" | sed 's/"/\\"/g' | sed 's/$/\\n/g' | tr -d '\n')
         
         # Make Platform API call to post workflow evidence item
-        response=$(curl -X 'POST' "$URL/v1/workflows/artifact" -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' --data-binary '{"stepId": "'"$STEP_ID"'", "evidence": {"value": "'"$PREPARED_CONTENT"'", "format": "'"$FORMAT"'"}}')
+        response=$(curl --fail-with-body  -X 'POST' "$URL/v1/workflows/artifact" -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' --data-binary '{"stepId": "'"$STEP_ID"'", "evidence": {"value": "'"$PREPARED_CONTENT"'", "format": "'"$FORMAT"'"}}') || command_failed=1
         
-        # Check response
-        if [ "$response" != "{}" ]
+        # Check curl exit code
+        if [ ${command_failed:-0} -eq 1 ];
         then
-          echo "Platform API call failed with error '$response'"
+          echo "Platform API call failed with error: '$response'"
           exit 1
         fi
       env:
