@@ -40,7 +40,7 @@ In your YAML file, add:
           content: |
             ## Test markup and property rendering
             - Run ID: ${{ cloudbees.run_id }}
-            -[backend.tar](https://ourcompany.com/repo/backend.tar)       
+            - [backend.tar](https://ourcompany.com/repo/backend.tar)       
 ----
 
 == License
