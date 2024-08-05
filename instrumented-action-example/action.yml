@@ -1,12 +1,12 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: action
 name: 'Instrumented action example'
-description: 'Illustrates how to instrument an action definition to publish evidence to the workflow run'
+description: 'Illustrates how to instrument an exiting action definition to publish evidence to the workflow run'
 
 inputs:
-  in:
+  input1:
     required: true
-    description: a value passed into the evidence
+    description: One of the parameters of the original action
 outputs:
   results-url:
     value: ${{ steps.do-something.outputs.url }}
@@ -18,12 +18,14 @@ runs:
       id: do-something
       uses: docker://golang:1.20.3-alpine3.17
       shell: sh
-      run: echo "https://example.com" > "$CLOUDBEES_OUTPUTS/url"
+      run: |
+        echo "https://example.com" > "$CLOUDBEES_OUTPUTS/url"
+        echo "Using the input parameter input1. Value: ${{ inputs.input1 }}"
           
     - name: Test publish-evidence-item action
       uses: cloudbees-io/publish-evidence-item
       with:
         content: |
           # Sample instrumented action example
-          - Action intput: ${{ inputs.in }}
+          - Action parameter input1, value: ${{ inputs.input1 }}
           - [Instrumented action results URL](${{ steps.do-something.outputs.url }})
