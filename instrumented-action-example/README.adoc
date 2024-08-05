@@ -14,7 +14,7 @@ Illustrates how to instrument an action definition to publish evidence to the wo
 | Default value
 | Description
 
-| `in`
+| `input1`
 | String
 | Yes
 |
