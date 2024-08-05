@@ -11,4 +11,4 @@ jobs:
       - name: Call instrumented action
         uses: ./instrumented-action-example
         with:
-          in: Some text to pass on
+          input1: Input to the action to illustrate passing data into evidence
