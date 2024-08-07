@@ -1,30 +1,32 @@
-= CloudBees action: Publish evidence item
+= CloudBees action: Publish evidence items
 
-Use this action to capture evidence data for workflow runs.   This information is collected at the step level of the workflow run.
+Use this action to capture evidence data for workflow runs.
+This information is collected at the step level of the workflow, and the data is available on the EVIDENCE tab of the run details.
+
+Refer to the link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/workflows/runs#_workflow_run_evidence[run evidence documentation] for more information.
 
 == Inputs
 
-[cols="2a,1a,1a,1a,3a",options="header"]
+[cols="2a,1a,1a,3a",options="header"]
 .Input details
 |===
 
 | Input name
 | Data type
 | Required?
-| Default value
 | Description
 
 | `content`
-| String
+|String
 | Yes
-|
 | The step level information captured as evidence for the workflow run.
 
 | `format`
 | String
-| No
-| MARKDOWN
-| The markup language format.  Default is Markdown.
+|No
+
+| The markup language format.
+Default is link:https://www.markdownguide.org/basic-syntax/[MARKDOWN].
 
 |===
 
@@ -42,6 +44,8 @@ In your YAML file, add:
             - Run ID: ${{ cloudbees.run_id }}
             - [backend.tar](https://ourcompany.com/repo/backend.tar)       
 ----
+
+NOTE: For more information on using Markdown with this action, refer to link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/evidence/publish-evidence-item#_markdown_syntax_support[Markdown syntax support].
 
 == License
 
