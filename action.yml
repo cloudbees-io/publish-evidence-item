@@ -16,13 +16,18 @@ runs:
   steps:
     - id: postWorkflowEvidenceItem
       name: Post workflow evidence item
-      uses: docker://alpine/curl:latest
+      uses: docker://esolang/jq:latest
       run: |
-        # Prepare content to be used in the JSON
-        PREPARED_CONTENT=$(echo "$CONTENT" | sed 's/"/\\"/g' | sed 's/$/\\n/g' | tr -d '\n')
+        # To avoid issue 'argument list too long' use temporary file
+        # in the JSON payload build for Platoform API call
+        echo '{"stepId": "'"$STEP_ID"'", "evidence": {"value": ' > /tmp/payload.json
+        echo "$CONTENT" | /usr/bin/jq -Rsa . >> /tmp/payload.json
+        echo ', "format": "'"$FORMAT"'"}}' >> /tmp/payload.json
         
         # Make Platform API call to post workflow evidence item
-        response=$(curl --fail-with-body  -X 'POST' "$URL/v1/workflows/artifact" -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' --data-binary '{"stepId": "'"$STEP_ID"'", "evidence": {"value": "'"$PREPARED_CONTENT"'", "format": "'"$FORMAT"'"}}') || command_failed=1
+        response=$(curl --fail-with-body  -X 'POST' "$URL/v1/workflows/artifact" \
+          -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' \
+          --data-binary '@/tmp/payload.json') || command_failed=1
         
         # Check curl exit code
         if [ ${command_failed:-0} -eq 1 ];
