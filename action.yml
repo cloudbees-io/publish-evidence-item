@@ -24,7 +24,7 @@ runs:
         # To avoid issue 'argument list too long' use file
         echo '{"stepId": "'"$STEP_ID"'", "evidence": {"value": ' > /tmp/content.json
         echo "$PREPARED_CONTENT" >> /tmp/content.json
-        echo '", "format": "'"$FORMAT"'"}}' >> /tmp/content.json
+        echo ', "format": "'"$FORMAT"'"}}' >> /tmp/content.json
         
         # Make Platform API call to post workflow evidence item
         response=$(curl --fail-with-body  -X 'POST' "$URL/v1/workflows/artifact" -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' --data-binary '@/tmp/content.json') || command_failed=1
