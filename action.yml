@@ -19,22 +19,26 @@ runs:
       uses: docker://esolang/jq:latest
       run: |
         # To avoid issue 'argument list too long' use temporary file
-        # in the JSON payload build for Platoform API call
+        # in the JSON payload build for CloudBees Unify API call
         echo '{"stepId": "'"$STEP_ID"'", "evidence": {"value": ' > /tmp/payload.json
         echo "$CONTENT" | /usr/bin/jq -Rsa . >> /tmp/payload.json
         echo ', "format": "'"$FORMAT"'"}}' >> /tmp/payload.json
         
-        # Make Platform API call to post workflow evidence item
-        response=$(curl --fail-with-body  -X 'POST' "$URL/v1/workflows/artifact" \
+        # Make CloudBees Unify API call to post workflow evidence item
+        response=$(curl --retry 5 --retry-delay 10 --retry-all-errors --silent --show-error --fail-with-body \
+          -X 'POST' "$URL/v1/workflows/artifact" \
           -H "Authorization: Bearer $JWT" -H 'Content-Type: application/json' \
           --data-binary '@/tmp/payload.json') || command_failed=1
         
         # Check curl exit code
         if [ ${command_failed:-0} -eq 1 ];
         then
-          echo "Platform API call failed with error: '$response'"
+          echo "CloudBees Unify API call failed with error:"
+          echo $response | jq
           exit 1
         fi
+        
+        echo "Workflow evidence item published successfully."
       env:
         STEP_ID: ${{ step.id }}
         CONTENT: ${{ inputs.content }}
