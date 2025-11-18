@@ -34,7 +34,7 @@ runs:
         if [ ${command_failed:-0} -eq 1 ];
         then
           echo "CloudBees Unify API call failed with error:"
-          echo $response | jq -r  
+          echo $response | jq
           exit 1
         fi
         
