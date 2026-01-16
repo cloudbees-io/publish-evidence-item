@@ -16,7 +16,7 @@ runs:
   steps:
     - name: Do something
       id: do-something
-      uses: docker://golang:1.20.3-alpine3.17
+      uses: docker://alpine:3.23.2
       shell: sh
       run: |
         echo "https://example.com" > "$CLOUDBEES_OUTPUTS/url"
