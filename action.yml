@@ -16,12 +16,12 @@ runs:
   steps:
     - id: postWorkflowEvidenceItem
       name: Post workflow evidence item
-      uses: docker://esolang/jq:latest
+      uses: docker://public.ecr.aws/l7o7z1g8/actions/cb-utils:main-0.1.9
       run: |
         # To avoid issue 'argument list too long' use temporary file
         # in the JSON payload build for CloudBees Unify API call
         echo '{"stepId": "'"$STEP_ID"'", "evidence": {"value": ' > /tmp/payload.json
-        echo "$CONTENT" | /usr/bin/jq -Rsa . >> /tmp/payload.json
+        echo "$CONTENT" | jq -Rsa . >> /tmp/payload.json
         echo ', "format": "'"$FORMAT"'"}}' >> /tmp/payload.json
         
         # Make CloudBees Unify API call to post workflow evidence item
