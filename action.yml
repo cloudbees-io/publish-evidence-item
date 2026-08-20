@@ -16,7 +16,7 @@ runs:
   steps:
     - id: postWorkflowEvidenceItem
       name: Post workflow evidence item
-      uses: docker://public.ecr.aws/l7o7z1g8/actions/cb-utils:main-0.1.59
+      uses: docker://public.ecr.aws/l7o7z1g8/actions/cb-utils:main-0.0.17
       run: |
         # To avoid issue 'argument list too long' use temporary file
         # in the JSON payload build for CloudBees Unify API call
