@@ -16,7 +16,9 @@ runs:
   steps:
     - id: postWorkflowEvidenceItem
       name: Post workflow evidence item
-      uses: docker://public.ecr.aws/l7o7z1g8/actions/cb-utils:main-0.1.59
+      # note: the image tag is reduced in the new run
+      # Note: Beware that images with newer minor version numbers exist, but they were built from the incorrect environment, and are actually older than the 0.0.x releases.
+      uses: docker://public.ecr.aws/l7o7z1g8/actions/cb-utils:main-0.0.17
       run: |
         # To avoid issue 'argument list too long' use temporary file
         # in the JSON payload build for CloudBees Unify API call
